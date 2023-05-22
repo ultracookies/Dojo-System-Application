@@ -12,11 +12,11 @@ import java.util.List;
 public interface StudentRepository extends CrudRepository<Student, Long> {
 
     @Query("SELECT * FROM \"Student\" WHERE \"Rank\" = :rank")
-    Student findByRank(@Param("rank") Rank rank);
+    List<Student> findByRank(@Param("rank") Rank rank);
 
     @Query("SELECT * FROM \"Student\" WHERE \"LastName\" = :lName")
-    Student findByLastName(@Param("lName") String lastName);
+    List<Student> findByLastName(@Param("lName") String lastName);
 
     @Query("SELECT * FROM \"Student\" WHERE \"FirstName\" = :fName")
-    Student findByFirstName(@Param("fName") String firstName);
+    List<Student> findByFirstName(@Param("fName") String firstName);
 }

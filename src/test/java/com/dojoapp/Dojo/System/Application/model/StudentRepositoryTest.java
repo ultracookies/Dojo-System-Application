@@ -26,7 +26,8 @@ class StudentRepositoryTest {
         var expectedLastName = expectedStudent.getLastName();
         var expectedRank = expectedStudent.getRank();
 
-        var actualStudent = studentRepository.findByRank(Rank.WHITE);
+        var query = studentRepository.findByRank(Rank.WHITE);
+        var actualStudent = query.get(0);
 
         assertAll(() -> {
             assertEquals(expectedFirstName, actualStudent.getFirstName());
@@ -42,7 +43,8 @@ class StudentRepositoryTest {
         var expectedLastName = expectedStudent.getLastName();
         var expectedRank = expectedStudent.getRank();
 
-        var actualStudent = studentRepository.findByLastName("Doe");
+        var query = studentRepository.findByLastName("Doe");
+        var actualStudent = query.get(0);
 
         assertAll(() -> {
             assertEquals(expectedFirstName, actualStudent.getFirstName());
@@ -58,7 +60,8 @@ class StudentRepositoryTest {
         var expectedLastName = expectedStudent.getLastName();
         var expectedRank = expectedStudent.getRank();
 
-        var actualStudent = studentRepository.findByFirstName("John");
+        var query = studentRepository.findByFirstName("John");
+        var actualStudent = query.get(0);
 
         assertAll(() -> {
             assertEquals(expectedFirstName, actualStudent.getFirstName());
