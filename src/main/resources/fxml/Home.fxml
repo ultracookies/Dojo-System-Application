@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dojoapp.Dojo.System.Application.view.Home">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dojoapp.Dojo.System.Application.controller.Home">
    <children>
       <TableView fx:id="studentSearchTV" layoutX="242.0" layoutY="62.0" prefHeight="276.0" prefWidth="331.0">
         <columns>
@@ -39,7 +39,7 @@
          </padding>
       </VBox>
       <Button fx:id="promoteBtn" layoutX="394.0" layoutY="353.0" mnemonicParsing="false" onAction="#promoteAction" text="Promote" />
-      <TextField fx:id="studentSearchTF" layoutX="239.0" layoutY="25.0" promptText="Name" />
+      <TextField fx:id="studentSearchBar" layoutX="239.0" layoutY="25.0" promptText="Name" />
       <Button fx:id="searchBtn" layoutX="415.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
       <Button fx:id="logoutBtn" layoutX="22.0" layoutY="354.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
    </children>
