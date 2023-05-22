@@ -11,10 +11,11 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 public class Student {
 
-    public Student(String firstName, String lastName, Rank rank) {
+    public Student(String firstName, String lastName, String birthDate, Rank rank) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.rank = rank;
+        this.birthDate = birthDate;
     }
 
     @Override
@@ -22,6 +23,7 @@ public class Student {
         return "{ID=" + id + ", " +
                 "FirstName=" + firstName + ", " +
                 "LastName=" + lastName + ", " +
+                "BirthDate=" + birthDate + ", " +
                 "Rank=" + rank + "}";
     }
 
@@ -40,4 +42,8 @@ public class Student {
     @Column("Rank")
     @Setter(AccessLevel.NONE)
     private final Rank rank;
+
+    @Column("BirthDate")
+    @Setter(AccessLevel.NONE)
+    private String birthDate;
 }
