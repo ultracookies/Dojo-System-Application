@@ -11,21 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.framework.junit5.Start;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.testfx.assertions.api.Assertions.assertThat;
 
 @SpringBootTest(classes = TestConfig.class)
 @ExtendWith(ApplicationExtension.class)
-class HomeTest {
+class HomeTest extends ApplicationTest {
 
     @Value("/fxml/Home.fxml")
     private Resource resource;
+
+    @Autowired
+    private Environment environment;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -33,12 +38,18 @@ class HomeTest {
     @Autowired
     private Home controller;
 
-    @Start
+    private Stage stage;
+
     public void start(Stage stage) throws IOException {
         var fxmlLoader = new FXMLLoader(resource.getURL());
         fxmlLoader.setControllerFactory(applicationContext::getBean);
         Parent root = fxmlLoader.load();
-        stage.setScene(new Scene(root));
+        var scene = new Scene(root);
+        scene.getRoot().setStyle("-fx-font-family: 'serif'");
+        var stageTitle = environment.getProperty("#{${stageTitlesMap}.home}");
+        stage.setTitle(stageTitle);
+        stage.setScene(scene);
+        this.stage = stage;
         stage.show();
     }
 
@@ -73,7 +84,15 @@ class HomeTest {
     }
 
     @Test
-    void addStudentAction() {
+    void addStudentAction(FxRobot robot) {
+        var originalTitle = stage.getTitle();
+        robot.clickOn(controller.getAddStudentBtn());
+        var actualTitle = stage.getTitle();
+        var expectedTitle = environment.getProperty("#{${stageTitlesMap}.addStudent}");
+        assertAll(() -> {
+            assertEquals(actualTitle, expectedTitle);
+            assertNotEquals(originalTitle, actualTitle);
+        });
     }
 
     @Test
@@ -85,7 +104,15 @@ class HomeTest {
     }
 
     @Test
-    void paymentAction() {
+    void paymentAction(FxRobot robot) {
+        var originalTitle = stage.getTitle();
+        robot.clickOn(controller.getPaymentBtn());
+        var actualTitle = stage.getTitle();
+        var expectedTitle = environment.getProperty("#{${stageTitlesMap}.payment}");
+        assertAll(() -> {
+            assertEquals(actualTitle, expectedTitle);
+            assertNotEquals(originalTitle, actualTitle);
+        });
     }
 
     @Test
@@ -93,7 +120,15 @@ class HomeTest {
     }
 
     @Test
-    void removeStudentAction() {
+    void removeStudentAction(FxRobot robot) {
+        var originalTitle = stage.getTitle();
+        robot.clickOn(controller.getRemoveStudentBtn());
+        var expectedTitle = stage.getTitle();
+        var actualTitle = environment.getProperty("#{${stageTitlesMap}.removeStudent}");
+        assertAll(() -> {
+            assertEquals(expectedTitle, actualTitle);
+            assertNotEquals(originalTitle, actualTitle);
+        });
     }
 
     @Test

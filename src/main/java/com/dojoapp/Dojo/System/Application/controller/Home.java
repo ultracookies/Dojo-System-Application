@@ -5,10 +5,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -55,8 +52,30 @@ public class Home implements Initializable {
     @FXML
     private Button logoutBtn;
 
+    @FXML
+    @Setter(AccessLevel.NONE)
+    private RadioButton searchByFirstNameRB;
+
+    @FXML
+    @Setter(AccessLevel.NONE)
+    private RadioButton searchByLastNameRB;
+
+    @FXML
+    @Setter(AccessLevel.NONE)
+    private Button addStudentBtn;
+
+    @FXML
+    @Setter(AccessLevel.NONE)
+    private Button paymentBtn;
+
+    @FXML
+    @Setter(AccessLevel.NONE)
+    private Button removeStudentBtn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        searchByFirstNameRB.fire();
+
         //boolean bind buttons next to student table view
         viewBtn.disableProperty().bind(booleanBindSearchStudentTF().not());
         editBtn.disableProperty().bind(booleanBindSearchStudentTF().not());
@@ -65,7 +84,6 @@ public class Home implements Initializable {
 
     @FXML
     void addStudentAction(ActionEvent event) {
-
     }
 
     @FXML

@@ -10,7 +10,7 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
 
     private final String applicationTitle;
 
-    StageListener(@Value("${spring.application.ui.title}") String applicationTitle) {
+    StageListener(@Value("#{${stageTitlesMap}.home}") String applicationTitle) {
         this.applicationTitle = applicationTitle;
     }
 
