@@ -15,13 +15,15 @@ class StudentRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        var student = new Student("John", "Doe", "01/01/2000", Rank.WHITE);
+        var customID = "788878";
+        var student = new Student(customID, "John", "Doe", "01/01/2000", Rank.WHITE);
         studentRepository.save(student);
     }
 
     @Test
     void findByRank() {
-        var expectedStudent = new Student("John", "Doe", "01/01/2000", Rank.WHITE);
+        var customID = "788878";
+        var expectedStudent = new Student(customID, "John", "Doe", "01/01/2000", Rank.WHITE);
         var expectedFirstName = expectedStudent.getFirstName();
         var expectedLastName = expectedStudent.getLastName();
         var expectedRank = expectedStudent.getRank();
@@ -38,7 +40,8 @@ class StudentRepositoryTest {
 
     @Test
     void findByLastName() {
-        var expectedStudent = new Student("John", "Doe", "01/01/2000", Rank.WHITE);
+        var customID = "788878";
+        var expectedStudent = new Student(customID, "John", "Doe", "01/01/2000", Rank.WHITE);
         var expectedFirstName = expectedStudent.getFirstName();
         var expectedLastName = expectedStudent.getLastName();
         var expectedRank = expectedStudent.getRank();
@@ -55,7 +58,8 @@ class StudentRepositoryTest {
 
     @Test
     void findByFirstName() {
-        var expectedStudent = new Student("John", "Doe", "01/01/2000", Rank.WHITE);
+        var customID = "788878";
+        var expectedStudent = new Student(customID, "John", "Doe", "01/01/2000", Rank.WHITE);
         var expectedFirstName = expectedStudent.getFirstName();
         var expectedLastName = expectedStudent.getLastName();
         var expectedRank = expectedStudent.getRank();

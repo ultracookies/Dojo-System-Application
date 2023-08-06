@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="619.0" prefWidth="600.0" stylesheets="@../stylesheets/home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dojoapp.Dojo.System.Application.controller.StudentProfile">
+   <children>
+      <Text fx:id="studentName" layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Name">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <GridPane layoutX="14.0" layoutY="125.0" prefHeight="270.0" prefWidth="245.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="101.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="99.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="First:" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Height:" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Middle:" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Last:" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Weight:" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Age:" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Sex:" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="D.O.B.:" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Date Began:" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Text fx:id="firstNameTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="FirstName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="middleNameTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="MiddleName" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="lastNameTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="LastName" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="heightTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Height" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="weightTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="ageTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="sexTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Sex" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="dobTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="MM/DD/YYYY" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="dateBeganTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="MM/DD/YYYY" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Label text="ID#:" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Text fx:id="customIDTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="CustomID" GridPane.columnIndex="1">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+         </children>
+      </GridPane>
+      <GridPane layoutX="259.0" layoutY="173.0" prefHeight="120.0" prefWidth="301.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="78.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="223.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Address:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="City:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="State:" GridPane.rowIndex="2">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Zipcode:" GridPane.rowIndex="3">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Text fx:id="addressTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="219.37939453125" GridPane.columnIndex="1">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="cityTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="City" wrappingWidth="217.8359375" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="stateTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="State" wrappingWidth="219.9892578125" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text fx:id="zipcodeTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Zipcode" wrappingWidth="220.1064453125" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+         </children>
+      </GridPane>
+      <ImageView fx:id="imageView" fitHeight="144.0" fitWidth="133.0" layoutX="453.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="259.0" layoutY="126.0" text="Rank:">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="closeBtn" layoutX="8.0" layoutY="579.0" mnemonicParsing="false" onAction="#closeAction" text="Close" />
+      <Button fx:id="editBtn" layoutX="60.0" layoutY="579.0" mnemonicParsing="false" onAction="#editBtn" text="Edit" />
+      <Text fx:id="rankTxt" layoutX="307.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rank">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Button fx:id="otherFilesBtn" layoutX="259.0" layoutY="305.0" mnemonicParsing="false" onAction="#otherFilesAction" text="Other Files" />
+      <Button fx:id="changeDirectoryBtn" layoutX="347.0" layoutY="305.0" mnemonicParsing="false" onAction="#changeDirectoryAction" text="Change Directory" />
+      <Label layoutX="111.0" layoutY="405.0" text="Notes:">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="notesTA" layoutX="176.0" layoutY="405.0" prefHeight="200.0" prefWidth="200.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="loadNotesBtn" layoutX="382.0" layoutY="580.0" mnemonicParsing="false" onAction="#loadNotesAction" text="Load" />
+   </children>
+</AnchorPane>

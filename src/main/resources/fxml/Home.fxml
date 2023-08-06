@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dojoapp.Dojo.System.Application.controller.Home">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dojoapp.Dojo.System.Application.controller.Home" style="-fx-font-family: Arial">
    <children>
       <TableView fx:id="studentSearchTV" layoutX="242.0" layoutY="62.0" prefHeight="276.0" prefWidth="331.0">
         <columns>

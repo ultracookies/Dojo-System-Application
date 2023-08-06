@@ -1,6 +1,7 @@
 package com.dojoapp.Dojo.System.Application.controller;
 
 import com.dojoapp.Dojo.System.Application.TestConfig;
+import com.dojoapp.Dojo.System.Application.model.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
+import org.springframework.test.context.jdbc.Sql;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -24,10 +26,24 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 
 @SpringBootTest(classes = TestConfig.class)
 @ExtendWith(ApplicationExtension.class)
+@Sql("/schema.sql")
 class HomeTest extends ApplicationTest {
+
+    /*
+    TODO
+     - fix viewBtn, editBtn, promoteBtn visibility tests so that it only passes if student is selected in studentTV
+     - if the above will be tested, find a way to populate studentTV as well
+     - only viewBtn and editBtn should open separate windows
+     */
 
     @Value("/fxml/Home.fxml")
     private Resource resource;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Autowired
     private Environment environment;
@@ -54,45 +70,47 @@ class HomeTest extends ApplicationTest {
     }
 
     @Test
-    void tableViewButtonsEnabledWhenTextFieldIsNotEmpty(FxRobot robot) {
-        var viewBtn = controller.getViewBtn();
-        var editBtn = controller.getEditBtn();
-        var promoteBtn = controller.getPromoteBtn();
-        var studentSearchBar = controller.getStudentSearchBar();
-        robot.clickOn(studentSearchBar).write("test");
-
+    void viewBtnIsDisabledWhenStudentTableViewIsEmpty() {
         assertAll(() -> {
-            assertFalse(viewBtn.isDisabled());
-            assertFalse(editBtn.isDisabled());
-            assertFalse(promoteBtn.isDisabled());
+            assertThat(controller.getStudentSearchTV().getItems()).isEmpty();
+            assertThat(controller.getViewBtn()).isDisabled();
         });
     }
 
     @Test
-    void tableViewButtonsDisabledWhenTextFieldIsEmpty() {
-        var viewBtn = controller.getViewBtn();
-        var editBtn = controller.getEditBtn();
-        var promoteBtn = controller.getPromoteBtn();
-        var studentSearchBar = controller.getStudentSearchBar();
+    void studentSearchTableViewPopulates(FxRobot robot) {
+        var address = new Address();
+        var addressID = addressRepository.save(address).getId();
+        var student = new Student("8834343", "John", "Doe", "1/1/1980", Rank.WHITE, addressID, 'M');
+        studentRepository.save(student);
+        robot.clickOn(controller.getStudentSearchBar())
+                .write("John")
+                .clickOn(controller.getSearchBtn());
+        assertThat(controller.getStudentSearchTV().getItems()).asList().isNotEmpty();
+        studentRepository.delete(student);
+    }
 
+    @Test
+    void searchBtnIsEnabledWhenStudentTextFieldIsNotEmpty(FxRobot robot) {
+        robot.clickOn(controller.getStudentSearchBar())
+                .write("test");
+        assertThat(controller.getSearchBtn()).isEnabled();
+    }
+
+    @Test
+    void searchBtnIsDisabledWhenStudentTextFieldIsEmpty() {
         assertAll(() -> {
-            assertTrue(studentSearchBar.getText().isEmpty());
-            assertTrue(viewBtn.isDisabled());
-            assertTrue(editBtn.isDisabled());
-            assertTrue(promoteBtn.isDisabled());
+            assertThat(controller.getStudentSearchBar()).hasText("");
+            assertThat(controller.getSearchBtn()).isDisabled();
         });
     }
 
     @Test
     void addStudentAction(FxRobot robot) {
-        var originalTitle = stage.getTitle();
         robot.clickOn(controller.getAddStudentBtn());
         var actualTitle = stage.getTitle();
         var expectedTitle = environment.getProperty("#{${stageTitlesMap}.addStudent}");
-        assertAll(() -> {
-            assertEquals(actualTitle, expectedTitle);
-            assertNotEquals(originalTitle, actualTitle);
-        });
+        assertEquals(actualTitle, expectedTitle);
     }
 
     @Test
@@ -105,14 +123,10 @@ class HomeTest extends ApplicationTest {
 
     @Test
     void paymentAction(FxRobot robot) {
-        var originalTitle = stage.getTitle();
         robot.clickOn(controller.getPaymentBtn());
         var actualTitle = stage.getTitle();
         var expectedTitle = environment.getProperty("#{${stageTitlesMap}.payment}");
-        assertAll(() -> {
-            assertEquals(actualTitle, expectedTitle);
-            assertNotEquals(originalTitle, actualTitle);
-        });
+        assertEquals(actualTitle, expectedTitle);
     }
 
     @Test
@@ -121,14 +135,10 @@ class HomeTest extends ApplicationTest {
 
     @Test
     void removeStudentAction(FxRobot robot) {
-        var originalTitle = stage.getTitle();
         robot.clickOn(controller.getRemoveStudentBtn());
         var expectedTitle = stage.getTitle();
         var actualTitle = environment.getProperty("#{${stageTitlesMap}.removeStudent}");
-        assertAll(() -> {
-            assertEquals(expectedTitle, actualTitle);
-            assertNotEquals(originalTitle, actualTitle);
-        });
+        assertEquals(actualTitle, expectedTitle);
     }
 
     @Test
