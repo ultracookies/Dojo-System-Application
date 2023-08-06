@@ -11,7 +11,69 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 public class Student {
 
-    public Student(String firstName, String lastName, String birthDate, Rank rank) {
+    @Id
+    @Setter(AccessLevel.NONE)
+    private Long id;
+
+    @Column("CustomID")
+    @Setter(AccessLevel.NONE)
+    private String customID;
+
+    @Column("FirstName")
+    private String firstName;
+
+    @Column("MiddleName")
+    private String middleName;
+
+    @Column("LastName")
+    private String lastName;
+
+    @Column("Sex")
+    @Setter(AccessLevel.NONE)
+    private Character sex;
+
+    @Column("Rank")
+    private Rank rank;
+
+    @Column("BirthDate")
+    @Setter(AccessLevel.NONE)
+    private String birthDate;
+
+    @Column("Age")
+    @Setter(AccessLevel.NONE)
+    private int age;
+
+    @Column("Height")
+    private String height;
+
+    @Column("Weight")
+    private String weight;
+
+    @Column("DateBegan")
+    @Setter(AccessLevel.NONE)
+    private String dateBegan;
+
+    @Column("AddressID")
+    @Setter(AccessLevel.NONE)
+    private Long addressID;
+
+    @Column("PhoneNumber")
+    private String phoneNumber;
+
+    public Student() {}
+
+    public Student(String customID, String firstName, String lastName, String birthDate, Rank rank, Long addressID, Character sex) {
+        this.customID = customID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.rank = rank;
+        this.birthDate = birthDate;
+        this.addressID = addressID;
+        this.sex = sex;
+    }
+
+    public Student(String customID, String firstName, String lastName, String birthDate, Rank rank) {
+        this.customID = customID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.rank = rank;
@@ -26,24 +88,4 @@ public class Student {
                 "BirthDate=" + birthDate + ", " +
                 "Rank=" + rank + "}";
     }
-
-    @Id
-    @Setter(AccessLevel.NONE)
-    private Long id;
-
-    @Column("FirstName")
-    @Setter(AccessLevel.NONE)
-    private final String firstName;
-
-    @Column("LastName")
-    @Setter(AccessLevel.NONE)
-    private final String lastName;
-
-    @Column("Rank")
-    @Setter(AccessLevel.NONE)
-    private final Rank rank;
-
-    @Column("BirthDate")
-    @Setter(AccessLevel.NONE)
-    private String birthDate;
 }

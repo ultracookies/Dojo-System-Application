@@ -3,41 +3,54 @@ package com.dojoapp.Dojo.System.Application.model;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.core.env.Environment;
+
+import java.io.File;
+import java.io.IOException;
 
 public class JavaFXApplication extends Application {
 
-	private ConfigurableApplicationContext context;
+	private ConfigurableApplicationContext applicationContext;
 
 	@Override
-	public void init() throws Exception {
-		ApplicationContextInitializer<GenericApplicationContext> initializer =
-				new ApplicationContextInitializer<GenericApplicationContext>() {
-			@Override
-			public void initialize(GenericApplicationContext applicationContext) {
-				applicationContext.registerBean(Application.class, () -> JavaFXApplication.this);
-				applicationContext.registerBean(Parameters.class, () -> getParameters());
+	public void init() {
+		var fileFolder = System.getProperty("user.home") + File.separator + "Desktop";
+		var file = new File(fileFolder);
+		if (file.exists()) {
+			var idk = new File(file.getPath() + File.separator + "DojoApp");
+			idk.mkdir();
+			if (idk.exists()) {
+				//TODO create a bunch of other dirs that'll be used by this application
+				var profileImagesDir = new File(idk.getPath() + File.separator + "students");
+				profileImagesDir.mkdir();
 			}
-		};
-
-		this.context = new SpringApplicationBuilder()
-				.sources(SpringBootEntryPoint.class)
-				.initializers(initializer)
-				.run(getParameters().getRaw().toArray(new String[0]));
+		}
+		this.applicationContext = new SpringApplicationBuilder().sources(SpringBootEntryPoint.class).run();
 	}
 
 	@Override
-	public void start(Stage stage) throws Exception {
-		context.publishEvent(new StageReadyEvent(stage));
+	public void start(Stage stage) {
+		applicationContext.publishEvent(new StageReadyEvent(stage));
 	}
 
 	@Override
-	public void stop() throws Exception {
-		context.close();
+	public void stop() {
+		applicationContext.close();
 		Platform.exit();
+	}
+
+	static class StageReadyEvent extends ApplicationEvent {
+		public StageReadyEvent(Stage stage) {
+			super(stage);
+		}
+
+		public Stage getStage() {
+			return ((Stage) getSource());
+		}
 	}
 }
 

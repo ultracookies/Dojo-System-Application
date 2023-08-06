@@ -1,0 +1,4 @@
+.text-field:invalidInput {
+  -fx-text-box-border: red;
+  -fx-focus-color: red;
+}

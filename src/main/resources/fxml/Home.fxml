@@ -6,29 +6,31 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dojoapp.Dojo.System.Application.controller.Home">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-font-family: Arial" stylesheets="@../stylesheets/home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dojoapp.Dojo.System.Application.controller.Home">
    <children>
-      <TableView fx:id="studentSearchTV" layoutX="242.0" layoutY="62.0" prefHeight="276.0" prefWidth="331.0">
+      <ImageView fitHeight="419.0" fitWidth="174.0" layoutX="14.0" layoutY="-2.0" opacity="0.24">
+         <image>
+            <Image url="@../images/school_symbol.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="studentSearchTV" layoutX="233.0" layoutY="62.0" prefHeight="276.0" prefWidth="362.0">
         <columns>
-          <TableColumn fx:id="firstNameCol" prefWidth="113.0" text="First Name" />
-          <TableColumn fx:id="lastNameCol" prefWidth="133.0" text="Last Name" />
-            <TableColumn fx:id="rankCol" prefWidth="84.0" text="Rank" />
+            <TableColumn fx:id="studentIDCol" prefWidth="87.0" text="Student ID" />
+          <TableColumn fx:id="firstNameCol" prefWidth="107.0" text="First Name" />
+          <TableColumn fx:id="lastNameCol" minWidth="0.0" prefWidth="85.0" text="Last Name" />
+            <TableColumn fx:id="rankCol" prefWidth="82.0" text="Rank" />
         </columns>
       </TableView>
-      <Button fx:id="viewBtn" layoutX="242.0" layoutY="353.0" mnemonicParsing="false" onAction="#viewAction" prefHeight="26.0" prefWidth="57.0" text="View" />
-      <Button fx:id="editBtn" layoutX="319.0" layoutY="353.0" mnemonicParsing="false" onAction="#editAction" prefHeight="26.0" prefWidth="51.0" text="Edit" />
-      <VBox layoutX="39.0" layoutY="100.0" prefHeight="200.0" prefWidth="124.0">
+      <VBox layoutX="39.0" layoutY="100.0" prefHeight="136.0" prefWidth="124.0">
          <children>
             <Button fx:id="paymentBtn" mnemonicParsing="false" onAction="#paymentAction" prefHeight="26.0" prefWidth="120.0" text="Payment" />
             <Button fx:id="addStudentBtn" mnemonicParsing="false" onAction="#addStudentAction" prefWidth="120.0" text="Add Student">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="removeStudentBtn" mnemonicParsing="false" onAction="#removeStudentAction" prefWidth="120.0" text="Remove Student">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -38,11 +40,30 @@
             <Insets bottom="20.0" top="10.0" />
          </padding>
       </VBox>
-      <Button fx:id="promoteBtn" layoutX="394.0" layoutY="353.0" mnemonicParsing="false" onAction="#promoteAction" text="Promote" />
       <TextField fx:id="studentSearchBar" layoutX="239.0" layoutY="25.0" promptText="Name" />
       <Button fx:id="searchBtn" layoutX="415.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
       <Button fx:id="logoutBtn" layoutX="22.0" layoutY="354.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
-      <RadioButton fx:id="searchByLastNameRB" layoutX="93.0" layoutY="320.0" mnemonicParsing="false" text="Search By Last Name" />
-      <RadioButton fx:id="searchByFirstNameRB" layoutX="93.0" layoutY="291.0" mnemonicParsing="false" text="Search By First Name" />
+      <RadioButton fx:id="searchByLastNameRB" layoutX="79.0" layoutY="320.0" mnemonicParsing="false" text="Search By Last Name" />
+      <RadioButton fx:id="searchByFirstNameRB" layoutX="79.0" layoutY="291.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="156.0" text="Search By First Name" />
+      <HBox layoutX="233.0" layoutY="349.0" prefHeight="35.0" prefWidth="362.0">
+         <children>
+            <Button fx:id="viewBtn" mnemonicParsing="false" onAction="#viewAction" prefHeight="26.0" prefWidth="57.0" text="View" />
+            <Button fx:id="editBtn" mnemonicParsing="false" onAction="#editAction" prefHeight="26.0" prefWidth="51.0" text="Edit">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="promoteBtn" mnemonicParsing="false" onAction="#promoteAction" text="Promote">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="removeStudentBtn" mnemonicParsing="false" onAction="#removeStudentAction" prefWidth="120.0" text="Remove Student">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
