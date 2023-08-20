@@ -31,6 +31,7 @@ import java.util.*;
 @Component
 public class AddPayment implements Initializable {
 
+    public Button cancelBtn;
     @Autowired
     private ApplicationContext applicationContext;
 

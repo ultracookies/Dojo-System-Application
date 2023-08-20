@@ -7,16 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="200.0" prefWidth="281.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dojoapp.Dojo.System.Application.controller.AddPayment">
-   <children>
-      <Text fx:id="studentNameTxt" layoutX="14.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student's Payment">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <ChoiceBox fx:id="choiceBox" layoutX="14.0" layoutY="74.0" prefWidth="150.0" />
-      <TextField fx:id="paymentTF" layoutX="14.0" layoutY="114.0" />
-      <Button fx:id="submitBtn" layoutX="196.0" layoutY="114.0" mnemonicParsing="false" onAction="#submitAction" text="Submit" />
-      <Button fx:id="cancelBtn" layoutX="14.0" layoutY="160.0" mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
-   </children>
+<AnchorPane prefHeight="200.0" prefWidth="281.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dojoapp.Dojo.System.Application.controller.AddPayment">
+   <Text fx:id="studentNameTxt" layoutX="14.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Student's Payment">
+      <font>
+         <Font size="30.0"/>
+      </font>
+   </Text>
+   <ChoiceBox fx:id="choiceBox" layoutX="14.0" layoutY="74.0" prefWidth="150.0"/>
+   <TextField fx:id="paymentTF" layoutX="14.0" layoutY="114.0"/>
+   <Button fx:id="submitBtn" layoutX="196.0" layoutY="114.0" mnemonicParsing="false" onAction="#submitAction"
+           text="Submit"/>
+   <Button fx:id="cancelBtn" layoutX="14.0" layoutY="160.0" mnemonicParsing="false" onAction="#cancelAction"
+           text="Cancel"/>
 </AnchorPane>

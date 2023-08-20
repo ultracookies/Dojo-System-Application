@@ -70,10 +70,6 @@ public class Home implements Initializable {
 
     @FXML
     @Setter(AccessLevel.NONE)
-    private Button editBtn;
-
-    @FXML
-    @Setter(AccessLevel.NONE)
     private Button promoteBtn;
 
     @FXML
@@ -119,8 +115,6 @@ public class Home implements Initializable {
 
         viewBtn.disableProperty()
                         .bind(booleanBindStudentSelection().not());
-        editBtn.disableProperty()
-                        .bind(booleanBindSearchStudentButtons().not());
         promoteBtn.disableProperty()
                         .bind(booleanBindSearchStudentButtons().not());
 
@@ -163,10 +157,6 @@ public class Home implements Initializable {
         catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    void editAction() {
     }
 
     @FXML

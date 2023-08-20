@@ -2,25 +2,28 @@ package com.dojoapp.Dojo.System.Application.controller;
 
 import com.dojoapp.Dojo.System.Application.CurrentStudent;
 import com.dojoapp.Dojo.System.Application.model.AddressRepository;
+import com.dojoapp.Dojo.System.Application.model.Student;
 import com.dojoapp.Dojo.System.Application.model.StudentRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -119,7 +122,17 @@ public class StudentProfile implements Initializable {
 
     @FXML
     void otherFilesAction() {
-
+        //TODO complete this function
+        var student = CurrentStudent.getStudent();
+        var fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Document");
+        var initDir = new File(
+                System.getProperty("user.home") + File.separator + "Desktop" +
+                        File.separator + "DojoApp" + File.separator + "students" +
+                        File.separator + student.getId() + File.separator + "otherDocuments"
+        );
+        fileChooser.setInitialDirectory(initDir);
+        var file = fileChooser.showOpenDialog(null);
     }
 
     @FXML
@@ -130,8 +143,21 @@ public class StudentProfile implements Initializable {
     }
 
     @FXML
-    void editBtn() {
-
+    void editBtn(ActionEvent event) {
+        try {
+            var source = (Node) event.getSource();
+            var stage = (Stage) source.getScene().getWindow();
+            var resource = getClass().getResource("/fxml/EditStudent.fxml");
+            var fxmlLoader = new FXMLLoader(resource);
+            fxmlLoader.setControllerFactory(applicationContext::getBean);
+            Parent root = fxmlLoader.load();
+            stage.setTitle("Edit " + studentName.getText() + "'s Profile");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -146,13 +172,28 @@ public class StudentProfile implements Initializable {
         dateBeganTxt.setText(student.getDateBegan());
         customIDTxt.setText(String.valueOf(student.getCustomID()));
 
-
-
         var address = addressRepository.findById(student.getAddressID()).get();
         addressTxt.setText(address.getStreet());
         cityTxt.setText(address.getCity());
         zipcodeTxt.setText(address.getZipcode());
         stateTxt.setText(address.getState());
+
+        loadImage(student);
+    }
+
+    private void loadImage(Student student) {
+        try {
+            var imageDir = System.getProperty("user.home") + File.separator + "Desktop" +
+                    File.separator + "DojoApp" + File.separator + "students" +
+                    File.separator + student.getId() + File.separator;
+            var imageFile = new File(imageDir + "profile-image.png");
+            var bufferedInputStream = new BufferedInputStream(new FileInputStream(imageFile));
+            imageView.setImage(new Image(bufferedInputStream));
+            bufferedInputStream.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

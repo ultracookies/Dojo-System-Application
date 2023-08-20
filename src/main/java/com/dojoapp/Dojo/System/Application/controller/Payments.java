@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,6 +40,9 @@ import java.util.ResourceBundle;
 @Component
 public class Payments implements Initializable {
 
+    public Button addPaymentBtn;
+    public Button otherPaymentsBtn;
+    public Button cancelBtn;
     @Autowired
     private ApplicationContext applicationContext;
 
